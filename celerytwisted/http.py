@@ -1,5 +1,5 @@
 from celery.task.http import (HttpDispatchTask, GET_METHODS, MutableURL, 
-                              URL as BaseURL, extract_response, user_agent)
+                              URL as BaseURL, extract_response, HttpDispatch)
 from celery.exceptions import TimeoutError
 from celery import states
 from twisted.web.client import getPage
@@ -22,7 +22,7 @@ class TwistedHttpTask(HttpDispatchTask):
         deferred = getPage(url=str(url), 
                            method=method,
                            postdata=postdata,
-                           agent=user_agent)
+                           agent=HttpDispatch.user_agent)
         return DeferredResult(deferred)
 
     @classmethod
