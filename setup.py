@@ -3,7 +3,7 @@ import sys, os
 
 version = '0.1.0'
 
-setup(name='celery-twisted',
+setup(name='apvy',
       version=version,
       description="",
       long_description="""\
