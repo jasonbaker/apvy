@@ -5,7 +5,7 @@ from celery import states
 from twisted.web.client import getPage
 from twisted.python.failure import Failure
 
-from celerytwisted.defer import DeferredResult
+from apvy.defer import DeferredResult
 
 class TwistedHttpTask(HttpDispatchTask):
     @classmethod

@@ -1,2 +1,2 @@
-from celerytwisted.defer import DeferredResult
-from celerytwisted.http import TwistedHttpTask, URL
+from apvy.defer import DeferredResult
+from apvy.http import TwistedHttpTask, URL
