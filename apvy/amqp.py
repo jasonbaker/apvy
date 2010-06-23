@@ -10,7 +10,7 @@ from celery import conf
 from celery.registry import tasks
 from cPickle import loads
 
-from zero.scheduler import Scheduler
+from apvy.scheduler import Scheduler
 
 amqp_file = resource_filename(__name__, 'amqp0-8.xml')
 spec = txamqp.spec.load(amqp_file)
@@ -23,15 +23,15 @@ def got_connection(connection, username, password):
     chan = yield connection.channel(1)
     yield chan.channel_open()
 
-    yield chan.queue_declare(queue='zero', durable=True, exclusive=False,
+    yield chan.queue_declare(queue='apvy', durable=True, exclusive=False,
                              auto_delete=False)
-    yield chan.exchange_declare(exchange='zeroservice', type='direct',
+    yield chan.exchange_declare(exchange='apvyservice', type='direct',
                                 durable=True, auto_delete=False)
-    yield chan.queue_bind(queue='zero', exchange='zeroservice',
-                          routing_key='zero_server')
-    yield chan.basic_consume(queue='zero', no_ack=True, consumer_tag='zerotag')
+    yield chan.queue_bind(queue='apvy', exchange='apvyservice',
+                          routing_key='apvy_server')
+    yield chan.basic_consume(queue='apvy', no_ack=True, consumer_tag='apvytag')
 
-    queue = yield connection.queue('zerotag')
+    queue = yield connection.queue('apvytag')
 
     print 'Listening for messages'
 
