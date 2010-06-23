@@ -20,7 +20,7 @@ setup(name='apvy',
       install_requires=[
           # -*- Extra requirements: -*-
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
+      entry_points={
+          'console_scripts' : ['apvyd = apvy.apvyd:main'],
+      }
       )
