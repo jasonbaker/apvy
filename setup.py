@@ -18,7 +18,7 @@ setup(name='apvy',
       include_package_data=True,
       zip_safe=True,
       install_requires=[
-          # -*- Extra requirements: -*-
+          'txamqp',
       ],
       entry_points={
           'console_scripts' : ['apvyd = apvy.apvyd:main'],
