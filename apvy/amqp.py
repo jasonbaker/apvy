@@ -10,8 +10,6 @@ from celery import conf
 from celery.registry import tasks
 from cPickle import loads
 
-from apvy.scheduler import Scheduler
-
 amqp_file = resource_filename(__name__, 'amqp0-8.xml')
 spec = txamqp.spec.load(amqp_file)
 
@@ -34,9 +32,6 @@ def got_connection(connection, username, password):
     queue = yield connection.queue('apvytag')
 
     print 'Listening for messages'
-
-    scheduler = Scheduler(connection)
-    scheduler.schedule()
 
     while True:
         raw_msg = yield queue.get()
